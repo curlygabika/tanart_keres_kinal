@@ -1,4 +1,4 @@
-# tanar_keres_kinal
+# tanart_keres_kinal
 <H2>Projekt eszközök beadandó</H2>
 <H3>Bevezető</H3>
 <p>Az alapötlet egy tanárt-keres-kínál elven működő alkalmazás létrehozása ahol a tanárok meghirdethetnek órákat különböző területekben és szinteken, a diákok pedig jelentkezhetnek rá.</p>
