@@ -7,7 +7,7 @@ import hu.elte.Tanart_Keres_Kinal.entities.User;
 import hu.elte.Tanart_Keres_Kinal.repositories.MessageRepository;
 import hu.elte.Tanart_Keres_Kinal.repositories.TaskRepository;
 import hu.elte.Tanart_Keres_Kinal.repositories.UserRepository;
-
+import hu.elte.Tanart_Keres_Kinal.security.AuthenticatedUser;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -15,6 +15,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,9 @@ public class UserController {
     
     @Autowired 
     private TaskRepository taskRepository;
+    
+    @Autowired 
+    private AuthenticatedUser authenticatedUser;
     
     @GetMapping("/{id}")
     public ResponseEntity<User> get(@PathVariable Long id){
@@ -89,4 +93,29 @@ public class UserController {
         
     }
     
+    /*@Autowired
+    private BCryptPasswordEncoder passwordEncoder;*/
+
+    /*@PostMapping("register")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        Optional<User> oUser = userRepository.findByUserName(user.getUserName());
+        if (oUser.isPresent()) {
+            return ResponseEntity.badRequest().build();
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setStatus(Status.STUDENT);
+        user.setCreatedAt(LocalDateTime.now());
+        return ResponseEntity.ok(userRepository.save(user));
+    }*/
+    
+    @PostMapping("login")
+    public ResponseEntity login(@RequestBody User user) {
+        return ResponseEntity.ok(authenticatedUser.getUser());
+    }
+    
+    @GetMapping("logoff")
+    public ResponseEntity logoff() {
+        authenticatedUser.setUser(null);
+        return ResponseEntity.ok(0);
+    }
 }
