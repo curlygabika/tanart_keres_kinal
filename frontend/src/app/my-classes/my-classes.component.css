@@ -1,0 +1,18 @@
+table.purpleHorizon {
+    /*border: 6px solid #792396;*/
+    background-color: #ccc8ce;
+    /*width: 350px;*/
+    text-align: center;
+    text-align-last: center;
+    align-content: center;
+    border-collapse: collapse;
+  }
+  table.purpleHorizon td, table.purpleHorizon th {
+    border: 3px solid #555555;
+    padding: 5px 2px;
+  }
+  table.purpleHorizon tbody td {
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFFFFF;
+  }

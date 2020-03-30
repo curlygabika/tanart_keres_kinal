@@ -1,0 +1,18 @@
+<div class="app-component">
+    <h1 class="text-center">Óráim</h1>
+    <table class="purpleHorizon">
+        <tr>
+            <th *ngFor="let col of tableColumns">
+            {{col}}
+            </th>
+        </tr>
+        <tr *ngFor="let task of filteredTasks" [class.table-info]="course === selectedCourse">
+            <td>{{ task.id }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.place }}</td>
+            <td>{{ task.price }}</td>
+            <td *ngIf="task.description !== null">{{ task.description }}</td>
+            <button mat-button (click)=onDeleteTask(task)>Törlés</button>
+        </tr>
+    </table>
+</div>

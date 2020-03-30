@@ -1,0 +1,29 @@
+  
+mat-form-field {
+    width: 100%;
+    }
+button{
+        width: 100%;
+    }
+
+#regForm {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    padding: 100px 0;
+    text-align:center;
+}
+
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: purple;
+  }
+
+::ng-deep .mat-form-field-label {
+    color: purple;
+}
+
+::ng-deep .mat-fab.mat-accent[disabled], .mat-fab.mat-primary[disabled], .mat-fab.mat-warn[disabled], .mat-fab[disabled][disabled], .mat-flat-button.mat-accent[disabled], .mat-flat-button.mat-primary[disabled], .mat-flat-button.mat-warn[disabled], .mat-flat-button[disabled][disabled], .mat-mini-fab.mat-accent[disabled], .mat-mini-fab.mat-primary[disabled], .mat-mini-fab.mat-warn[disabled], .mat-mini-fab[disabled][disabled], .mat-raised-button.mat-accent[disabled], .mat-raised-button.mat-primary[disabled], .mat-raised-button.mat-warn[disabled], .mat-raised-button[disabled][disabled] {
+    color: white;
+    background-color: black;
+}

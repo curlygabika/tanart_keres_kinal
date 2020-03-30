@@ -1,0 +1,46 @@
+<div class="form-style">
+    <div id="loginForm">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <H3>BEJELENTKEZÉS</H3>
+        
+            <mat-form-field appearance="outline">
+                <input
+                matInput
+                placeholder="Felhasználónév"
+                formControlName="username"
+                required
+                />
+                <mat-error *ngIf="username.invalid">Felhasználónév megadása kötelező</mat-error>
+                <mat-label>Felhasználónév</mat-label>
+            </mat-form-field>
+            <br />
+            <br />
+            <mat-form-field appearance="outline">
+                <input
+                matInput
+                placeholder="Jelszó"
+                formControlName="password"
+                required
+                [type]="hidePassword ? 'password' : 'text'"
+                />
+                <mat-label>Jelszó</mat-label>
+                <mat-icon matSuffix (click)="hidePassword = !hidePassword"></mat-icon>
+                <mat-error *ngIf="password.invalid">Jelszó megadása kötelező</mat-error>
+            </mat-form-field>
+            
+            <div>
+                <button
+                mat-flat-button
+                type="submit"
+                color="primary"
+                [disabled]="loginForm.invalid"
+                >
+                Bejelentkezés
+                </button>
+                <div *ngIf="message">
+                    {{ message }}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
