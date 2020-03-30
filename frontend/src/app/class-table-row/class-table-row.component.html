@@ -1,0 +1,6 @@
+<td *ngFor="let col of columns; last as isLast">
+    <div *ngIf="isLast" class="component-tag-sm">
+        <span>app-class-table-row</span>
+    </div>
+    {{task[col]}}
+</td>

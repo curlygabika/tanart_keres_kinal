@@ -1,0 +1,69 @@
+<div class="form-style">
+        <div id="newClassForm">
+            <form [formGroup]="newClassForm" (ngSubmit)="onSubmit()">
+                <h3>Új kurzus felvétele</h3>
+        
+                <mat-form-field appearance="outline">
+                    <input
+                    matInput
+                    placeholder="Cím"
+                    formControlName="title"
+                    required
+                    />
+                    <mat-error *ngIf="title.invalid">Cím megadása kötelező</mat-error>
+                    <mat-label>Cím</mat-label>
+                </mat-form-field>
+                
+                <br />
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Helyszín" formControlName="place" required />
+                    <mat-error *ngIf="place.invalid">Helyszín megadása kötelező</mat-error>
+                    <mat-label>Helyszín</mat-label>
+                </mat-form-field>
+    
+                <br />
+                
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Ft/óra" formControlName="price" required />
+                    <mat-error *ngIf="price.invalid">Ár megadása kötelező</mat-error>
+                    <mat-label>Ár</mat-label>
+                </mat-form-field>
+
+                <br />
+
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Leírás" formControlName="description"/>
+                    <mat-label>Leírás</mat-label>
+                </mat-form-field>
+                
+                <br />
+
+                <mat-form-field>
+                    <mat-label>Tantárgy</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let subj of subjects" [value]="subj">
+                            {{subj}}
+
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <br />
+
+                <div>
+                    <button
+                        mat-flat-button
+                        type="submit"
+                        color="primary"
+                        [disabled]="newClassForm.invalid"
+                    >
+                        Óra felvétele
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    <div *ngIf="message">
+                        {{ message }}
+                    </div>
+                </div>
+            </form>
+        </div>    
+    </div>

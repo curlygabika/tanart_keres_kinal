@@ -1,0 +1,13 @@
+<table class="purpleHorizon">
+    <tr>
+        <th *ngFor="let col of columns">
+        {{col}}
+        </th>
+    </tr>
+    <tr *ngFor="let task of tasks" (click)=onSelectC>
+        <td>{{ task.id }}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.place }}</td>
+        <td>{{ task.price }}</td>
+    </tr>
+</table>
