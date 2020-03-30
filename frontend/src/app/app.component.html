@@ -1,0 +1,25 @@
+
+<div *ngIf="authService.isLoggedIn">
+  <mat-toolbar color="primary">
+      <button mat-button routerLink="/main-page">
+        <mat-icon>home</mat-icon>
+        Főoldal
+      </button>
+      <button mat-button routerLink="/classes">Órák</button>
+      <button mat-button routerLink="/myclasses">Óráim</button>
+      <button mat-button routerLink="/classes/new">Új óra felvétele</button>
+      <button mat-button routerLink="/login" (click)="logout()">Kilépés</button>
+  </mat-toolbar>
+</div>
+<div *ngIf="!authService.isLoggedIn">
+  <mat-toolbar color="primary">
+      <button mat-button routerLink="/main-page">
+        <mat-icon>home</mat-icon>
+        Főoldal
+      </button>
+      <button mat-button routerLink="/classes">Órák</button>
+      <button mat-button routerLink="/login">Belépés</button>
+      <button mat-button routerLink="/signup">Regisztráció</button>
+  </mat-toolbar>
+</div>
+<router-outlet></router-outlet>
