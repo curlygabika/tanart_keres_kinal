@@ -1,9 +1,0 @@
-hu\elte\Tanart_Keres_Kinal\entities\Difficulty.class
-hu\elte\Tanart_Keres_Kinal\entities\Status.class
-hu\elte\Tanart_Keres_Kinal\Tanart_Keres_Kinal.class
-hu\elte\Tanart_Keres_Kinal\entities\Subject.class
-hu\elte\Tanart_Keres_Kinal\entities\BaseEntity.class
-hu\elte\Tanart_Keres_Kinal\entities\BaseEntityWithCreationInfo.class
-hu\elte\Tanart_Keres_Kinal\entities\User.class
-hu\elte\Tanart_Keres_Kinal\entities\Task.class
-hu\elte\Tanart_Keres_Kinal\entities\Message.class
