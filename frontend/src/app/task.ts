@@ -9,7 +9,7 @@ export class Task {
     public title: string;
     public description: string;
     public place: string;
-    public price: string;
+    public price: number;
     public messages: Message[];
     public subject: Subject;
 }
