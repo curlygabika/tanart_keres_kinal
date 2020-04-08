@@ -93,10 +93,10 @@ public class UserController {
         
     }
     
-    /*@Autowired
-    private BCryptPasswordEncoder passwordEncoder;*/
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-    /*@PostMapping("register")
+    @PostMapping("register")
     public ResponseEntity<User> register(@RequestBody User user) {
         Optional<User> oUser = userRepository.findByUserName(user.getUserName());
         if (oUser.isPresent()) {
@@ -106,7 +106,7 @@ public class UserController {
         user.setStatus(Status.STUDENT);
         user.setCreatedAt(LocalDateTime.now());
         return ResponseEntity.ok(userRepository.save(user));
-    }*/
+    }
     
     @PostMapping("login")
     public ResponseEntity login(@RequestBody User user) {
