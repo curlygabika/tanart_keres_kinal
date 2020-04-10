@@ -7,20 +7,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
       - uses: actions/checkout@v1
-
-      - name: Node ${{ matrix.node-version }}
+      - name: Use Node.js 12.8
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: npm install and npm run build
-        run: |
-          npm ci
-          npm run build:ci
+          node-version: 12.8
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Lint
+        run: npm run lint
+        working-directory: ./frontend  
+      - name: Build
+        run: npm run build -- --prod
+        working-directory: ./frontend  
+      - name: Test
+        run: npm test -- --configuration=ci
+        working-directory: ./frontend  
+      - name: E2E
+        run: npm run e2e -- --configuration=ci
         working-directory: ./frontend  
