@@ -2,6 +2,7 @@ package hu.elte.Tanart_Keres_Kinal.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
+import java.util.Random;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -29,7 +30,7 @@ public class Task extends BaseEntityWithCreationInfo {
     private String place;
     
     @Column
-    private String price;
+    private double price;
     
     @JoinColumn(updatable = false, nullable = false)
     @ManyToOne(targetEntity = Subject.class)
@@ -38,4 +39,11 @@ public class Task extends BaseEntityWithCreationInfo {
     @JsonIgnore
     @OneToMany(targetEntity = Message.class, mappedBy = "task")
     private List<Message> message;
+    
+    private  double salePrice() {
+        Random rand = new Random();
+        int randomsale = rand.nextInt((5 - 1) + 0);
+        double saleprice = price * (1- (0.1 * randomsale));
+    return saleprice ;
+    }
 }
