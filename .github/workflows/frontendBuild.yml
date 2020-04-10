@@ -1,4 +1,4 @@
-name: frontendRun
+name: frontendBuild
 on:
   push:
     branches:
@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: npm install
         working-directory: ./frontend  
-      - name: Start
-        run: npm start
+      - name: Test
+        run: npm test
         working-directory: ./frontend  
 
