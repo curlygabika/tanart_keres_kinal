@@ -1,2 +1,3 @@
-call npm install frontend\
-call npm start --prefix frontend\
+call cd frontend
+call npm install 
+call npm start
