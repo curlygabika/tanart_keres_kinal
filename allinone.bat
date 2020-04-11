@@ -3,4 +3,4 @@ cd tanart_keres_kinal
 
 start "" backend.bat
 start "" frontend.bat
-cmd explorer "http://localhost:4200/"
+explorer "http://localhost:4200/"
