@@ -9,6 +9,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -46,13 +47,13 @@ public class UserEntityTest {
         Optional<User> user = userRepository.findByUserName(userName);
         assertThat(user).isNotNull();
         assertThat(user.isPresent());
-        assertThat(user.get().getUserName() == "andrea112");
+        assertThat(user.get().getUserName()).isEqualTo("andrea112");
         
         userName = "jancsika";
         user = userRepository.findByUserName(userName);
         assertThat(user).isNotNull();
         assertThat(user.isPresent());
-        assertThat(user.get().getUserName() == "jancsika");
+        assertThat(user.get().getUserName()).isEqualTo("jancsika");
     }
     
     @Test
@@ -60,12 +61,12 @@ public class UserEntityTest {
         String fullName = "Andrea Bakocs";
         User user = userRepository.findByFullName(fullName);
         assertThat(user).isNotNull();
-        assertThat(user.getFullName() == "Andrea Bakocs");
+        assertThat(user.getFullName()).isEqualTo("Andrea Bakocs");
         
         fullName = "Jancsi Tolnai";
         user = userRepository.findByFullName(fullName);
         assertThat(user).isNotNull();
-        assertThat(user.getFullName() == "Jancsi Tolnai");
+        assertThat(user.getFullName()).isEqualTo("Jancsi Tolnai");
     }
     
     @Test
@@ -74,12 +75,12 @@ public class UserEntityTest {
         List<User> users = userRepository.getUsersByStatus(status);
         assertThat(users).isNotNull();
         assertThat(users).hasSize(1);
-        assertThat(users.get(0).getStatus() == Status.TEACHER);
+        assertThat(users.get(0).getStatus()).isEqualTo(Status.TEACHER);
         status = Status.STUDENT;
         users = userRepository.getUsersByStatus(status);
         assertThat(users).isNotNull();
         assertThat(users).hasSize(1);
-        assertThat(users.get(0).getStatus() == Status.STUDENT);       
+        assertThat(users.get(0).getStatus()).isEqualTo(Status.STUDENT);
     }
     
     @Test
