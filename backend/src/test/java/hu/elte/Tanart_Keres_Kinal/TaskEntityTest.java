@@ -144,4 +144,15 @@ public class TaskEntityTest {
         assertThat(task).isEqualTo(newTask);
         assertThat(task.getTitle()).isEqualTo(newTask.getTitle());
     }
+    
+    @Test
+    public void testSalePrice(){
+        Integer  rand = 5;
+        Task task = taskRepository.findByTitle("Math course").get();
+        assertThat(task.getPrice()).isEqualTo(5000.0);
+        assertThat(task.salePrice()).isBetween(2500.0, 5000.0);
+        task = taskRepository.findByTitle("English course").get();
+        assertThat(task.getPrice()).isEqualTo(1000.0);
+        assertThat(task.salePrice()).isBetween(500.0, 1000.0);        
+    }
 }
