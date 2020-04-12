@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "task")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class Task extends BaseEntityWithCreationInfo {
     @Column
@@ -40,7 +42,7 @@ public class Task extends BaseEntityWithCreationInfo {
     @OneToMany(targetEntity = Message.class, mappedBy = "task")
     private List<Message> message;
     
-    private  double salePrice() {
+    public  double salePrice() {
         Random rand = new Random();
         int randomsale = rand.nextInt((5 - 1) + 0);
         double saleprice = price * (1- (0.1 * randomsale));

@@ -10,6 +10,7 @@ import hu.elte.Tanart_Keres_Kinal.repositories.UserRepository;
 import hu.elte.Tanart_Keres_Kinal.security.AuthenticatedUser;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,19 @@ public class UserController {
     public ResponseEntity<User> get(@PathVariable Long id){
         return new ResponseEntity(userRepository.findById(id), HttpStatus.OK);
     }
+    
+    @GetMapping("/fullName/{fullName}")
+    public ResponseEntity<User> findByFullName(@PathVariable String fullName){
+        User user = userRepository.findByFullName(fullName);
+        return new ResponseEntity(user, HttpStatus.OK);
+    }
+    
+    @GetMapping("/status/{status}")
+    public ResponseEntity<Iterable<User>> getUsersByStatus(@PathVariable Status status){
+        List<User> users = userRepository.getUsersByStatus(status);
+        return new ResponseEntity(users, HttpStatus.OK);
+    }
+    
     
     @GetMapping("/{id}/task")
     public ResponseEntity<Iterable<Task>> getAllTask(@PathVariable Long id){
@@ -88,9 +102,8 @@ public class UserController {
     
     @PutMapping("")
     public ResponseEntity<User> create(@RequestBody User entity){
-        userRepository.save(entity);
-        return new ResponseEntity(userRepository.findById(entity.getId()), HttpStatus.OK) ;
-        
+        entity = userRepository.save(entity);
+        return new ResponseEntity(entity, HttpStatus.OK) ;      
     }
     
     @Autowired
