@@ -67,3 +67,15 @@
   <li>Maven - project management/függőségek kezelése</li>
   <li>Spring/Springboot - keretrenszer</li>
 </ul>
+
+<H3>CI működése és projekt elindítás</H3>
+<p>CI rendszernek a GitHub Actions -t választottuk ,  a .github/workflows mappába van 3 file ami konfigurálja a CI-t :
+frontendBuild.yml - automatikusan build-eli a frontendet (Nodejs) ha a master branchre push-olunk
+testMaster.yml - automatikusan buildeli, teszteli és artifecteket készit a backendhez(maven) ha a master branchre push-olunk vagy pull_request-elünk
+test_features.yml - automatikusan teszteli a backendet(maven) ha a test branchre push-olunk (ezt az ágat használtuk a tesztek előkészítésére).
+
+Az projekt Actions menüben  látszanak ezek az automatikus futtatások , a trendek alakulása.
+
+Emellett a gyökérkönyvtárban van egy allinone.bat fájl ami birtokában egy kattintással letölthető a github projekt, elindítható a backend és frontend is , utóbbit megnyitja a böngészőben.
+
+test fájlok útvonala : backend/src/test/java/hu/elte/Tanart_Keres_Kinal</p>
