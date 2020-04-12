@@ -40,7 +40,7 @@ public class MessageEntityTest {
     }
 
     @Test
-    public void findAllUsersInMessageRepository(){
+    public void findAllMessagesInMessageRepository(){
         Iterable<Message> messages = messageRepository.findAll();
         int numberOfMessages = 2;
         assertThat(messages).hasSize(numberOfMessages);

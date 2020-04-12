@@ -5,7 +5,6 @@ import hu.elte.Tanart_Keres_Kinal.entities.User;
 import hu.elte.Tanart_Keres_Kinal.repositories.TaskRepository;
 import hu.elte.Tanart_Keres_Kinal.repositories.UserRepository;
 import hu.elte.Tanart_Keres_Kinal.entities.Task;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityManager;
@@ -13,6 +12,7 @@ import javax.sql.DataSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import hu.elte.Tanart_Keres_Kinal.repositories.UserRepository;
+import java.time.LocalDateTime;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -39,10 +39,10 @@ public class TaskEntityTest {
     }
 
     @Test
-    public void findAllUsersInUserRepository(){
+    public void findAllTasksInTaskRepository(){
         Iterable<Task> tasks = taskRepository.findAll();
-        int numberOfUsers = 5;
-        assertThat(tasks).hasSize(numberOfUsers);
+        int numberOfTasks = 5;
+        assertThat(tasks).hasSize(numberOfTasks);
     }
 
     @Test
@@ -50,25 +50,14 @@ public class TaskEntityTest {
         //multiple tasks are created by this user (5)
         String userFullName = "Andrea Bakocs";
         User user = userRepository.findByFullName(userFullName);
-        assertThat(user).isNotNull();
-        assertThat(user.getFullName() == "Andrea Bakocs");
-
         List<Task> tasks = taskRepository.findAllByCreatedBy(user);
         assertThat(tasks).isNotNull();
         assertThat(tasks).hasSize(5);
-        assertThat(tasks.get(0).getCreatedBy() == user);
-
-    }
-
-    @Test
-    public void foundZeroTaskCreatedByGivenUserNameInTaskRepository(){
-        //no tasks has been created by this user
-        String userFullName = "Jancsi Tolnai";
-        User user = userRepository.findByFullName(userFullName);
-        assertThat(user).isNotNull();
-        assertThat(user.getFullName() == "Jancsi Tolnai");
-
-        List<Task> tasks = taskRepository.findAllByCreatedBy(user);
+        assertThat(tasks.get(0).getCreatedBy()).isEqualTo(user);
+        
+        userFullName = "Jancsi Tolnai";
+        user = userRepository.findByFullName(userFullName);
+        tasks = taskRepository.findAllByCreatedBy(user);
         assertThat(tasks).hasSize(0);
     }
 
@@ -78,46 +67,70 @@ public class TaskEntityTest {
         Optional<Task> task = taskRepository.findByTitle(title);
         assertThat(task).isNotNull();
         assertThat(task.isPresent());
-        assertThat(task.get().getTitle() == "Programming for kids");
-        assertThat(task.get().getPlace() == "Budapest Koer utca 1/a");
+        assertThat(task.get().getTitle()).isEqualTo("Programming for kids");
+        assertThat(task.get().getPlace()).isEqualTo("Budapest Koer utca 1/a");
 
         title = "Tech course";
         task = taskRepository.findByTitle(title);
         assertThat(task).isNotNull();
         assertThat(task.isPresent());
-        assertThat(task.get().getTitle() == "Tech course");
-        assertThat(task.get().getPrice() == 4000.0);
+        assertThat(task.get().getTitle()).isEqualTo("Tech course");
+        assertThat(task.get().getPrice()).isEqualTo(4000.0);
+       
+        title = "Not a valid title";
+        task = taskRepository.findByTitle(title);
+        assertThat(!task.isPresent());        
+        
     }
 
-    @Test
-    public void foundZeroTaskByTitleInTaskRepository(){
-        String title = "Not a valid title";
-        Optional<Task> task = taskRepository.findByTitle(title);
-        assertThat(task).isNotNull();
-        assertThat(!task.isPresent());
-    }
-
-   /* @Test
-    public void findUsersByGivenSubject(){
-
-    }*/
 
     /*@Test
+    public void findUsersByGivenSubject(){
+        Subject subject = new Subject(
+                "art",
+                null,
+                null);
+        subject.setId(1L);
+        Task task = new Task(
+                "music classes",
+                "play the piano",
+                "zrinyi utca 14.",
+                2500.0,
+                subject,
+                null);
+        task.setCreatedAt(LocalDateTime.now());
+        User user = userRepository.findById(2L).get();
+        task.setCreatedBy(user);
+        taskRepository.save(task);
+        List <Task> tasks = taskRepository.findAllBySubject(subject);
+        assertThat(tasks).isNotNull();
+        assertThat(tasks).hasSize(1);
+        assertThat(tasks.get(0).getSubjectType()).isEqualTo(subject);
+    }*/
+
+    @Test
     public void whenCreatedFoundByIdInTaskRepository(){
+        Subject subject = new Subject(
+                "art",
+                null,
+                null);
+        subject.setId(1L);        
         Task task = new Task(
                 "biology",
                 "this is biology",
                 "bela u 1",
                 2000.0,
-                null,
-                null,
+                subject,
                 null);
+        task.setCreatedAt(LocalDateTime.now());
+        User user = userRepository.findById(2L).get();
+        task.setCreatedBy(user);
         taskRepository.save(task);
-        assertThat(taskRepository.findById(task.getId())).isNotNull();
+        assertThat(taskRepository.findById(6L)).isNotNull();
         Iterable<Task> tasks = taskRepository.findAll();
         int numberOfTasks = 6;
         assertThat(tasks).hasSize(numberOfTasks);
-    }*/
+    }
 
     @Test
     public void whenUpdatedChangesFoundInTaskRepository(){
