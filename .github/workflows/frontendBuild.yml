@@ -12,12 +12,12 @@ jobs:
       - uses: actions/checkout@v1
       - name: Prepare
         run: npm ci
-        working-directory: ./frontend
       - name: Lint
         uses: mooyoul/tslint-actions@v1.1.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           pattern: '*.ts'
+          working-directory: ./frontend
      
   build:
     runs-on: ubuntu-latest
