@@ -18,7 +18,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           pattern: '*.ts'
-          working-directory: ./frontend
      
   build:
     runs-on: ubuntu-latest
