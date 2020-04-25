@@ -19,6 +19,7 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         reporter: 'github-pr-check'
+        working-directory : ./backend
   test:
     name: Clean And Test
     runs-on: ubuntu-18.04
