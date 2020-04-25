@@ -8,7 +8,17 @@ on:
     branches:
       - 'master'
 jobs:
-
+  checkstyle_job:
+    runs-on: ubuntu-latest
+    name: Checkstyle job
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run check style
+      uses: curlygabika/tanart_keres_kinal@master
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: 'github-pr-check'
   test:
     name: Clean And Test
     runs-on: ubuntu-18.04
