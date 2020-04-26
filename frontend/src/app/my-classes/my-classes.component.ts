@@ -12,6 +12,7 @@ export class MyClassesComponent implements OnInit {
 
   public filteredTasks: Task[];
   public cloumns: string[];
+  public something: string[];
 
   constructor(
     private classService: ClassService,
