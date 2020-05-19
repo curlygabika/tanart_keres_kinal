@@ -24,7 +24,7 @@ export class AuthService {
 
   async signin(userName: string, fullName: string, password: string) {
     try {
-      const token = btoa(`admin:password`);
+      const token = btoa(`andrea112:password`);
       httpOptions.headers = httpOptions.headers.set(
         "Authorization",
         `Basic ${token}`

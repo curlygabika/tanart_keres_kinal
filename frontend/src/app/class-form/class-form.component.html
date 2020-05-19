@@ -1,6 +1,6 @@
 <div class="form-style">
         <div id="newClassForm">
-            <form [formGroup]="newClassForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="newClassForm" (ngSubmit)="onSubmit(newClassForm.value)">
                 <h3>Új kurzus felvétele</h3>
         
                 <mat-form-field appearance="outline">
@@ -38,12 +38,11 @@
                 
                 <br />
 
-                <mat-form-field>
+                <mat-form-field appearance="outline">
                     <mat-label>Tantárgy</mat-label>
                     <mat-select>
                         <mat-option *ngFor="let subj of subjects" [value]="subj">
                             {{subj}}
-
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -59,10 +58,8 @@
                     >
                         Óra felvétele
                         <mat-icon>done</mat-icon>
+
                     </button>
-                    <div *ngIf="message">
-                        {{ message }}
-                    </div>
                 </div>
             </form>
         </div>    

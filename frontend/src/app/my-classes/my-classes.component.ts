@@ -26,7 +26,7 @@ export class MyClassesComponent implements OnInit {
 
     for (let task of tasks) {
       if (task.createdBy.fullName == this.authService.user.fullName) {
-        this.filteredTasks.push(task);
+      this.filteredTasks.push(task);
       }
     }
   }

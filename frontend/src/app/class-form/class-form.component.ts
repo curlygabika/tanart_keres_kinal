@@ -3,7 +3,7 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClassService } from '../class.service';
-import { Subject } from 'rxjs';
+import { Subject } from '../subject';
 import { Difficulty } from '../difficulty';
 
 @Component({
@@ -13,7 +13,7 @@ import { Difficulty } from '../difficulty';
 })
 export class ClassFormComponent implements OnInit {
 
-  subjects = ["matek", "angol"];
+  subjects = ["math", "english", "programming", "art"];
 
   message: string;
   subject: any;
@@ -56,7 +56,7 @@ export class ClassFormComponent implements OnInit {
     this.subject = value;
   }
 
-  async onSubmit() {
+  async onSubmit(name) {
     this.subject = new Subject;
     this.diff = new Difficulty;
     
@@ -64,7 +64,7 @@ export class ClassFormComponent implements OnInit {
     this.diff.level = "beginner";
 
     this.subject.id = 1;
-    this.subject.name = "programming";
+    this.subject.name = name;
     this.subject.difficulty = this.diff;
 
     console.log(this.subject);
